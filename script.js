@@ -109,7 +109,7 @@ equal.addEventListener("click", ()=> {
                 result = Number(result).toFixed(6);
             }
             result = Number(result);
-            num1 = result;
+            num1 = "none";
             num2="none";
             output.textContent=result.toString();
             operatorType="none";
