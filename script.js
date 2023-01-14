@@ -90,6 +90,7 @@ equal.addEventListener("click", ()=> {
         if(result %1!=0){
             result = Number(result).toFixed(6);
         }
+        result = Number(result);
         num1 = result;
         num2="none";
         output.textContent=result.toString();
