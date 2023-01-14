@@ -11,6 +11,9 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if(num2 == 0) {
+        return "no";
+    }
     return num1 / num2;
 }
 
@@ -38,7 +41,7 @@ let result ="none";
 
 num.forEach((number) => {
     number.addEventListener("click", () => {
-        if(output.textContent=="0") {
+        if(num1=="none") {
             output.textContent=number.textContent;
             num1= Number(number.textContent);
         }
@@ -75,6 +78,13 @@ operators.forEach((operator) => {
         else if(num2!="none" && num1!="none") {
             output.textContent=output.textContent.concat(operator.textContent);
             result = operate(operatorType,num1,num2);
+            if(result=="no") {
+                output.textContent="CAN'T DIVIDE BY 0";
+                operatorType = "none";
+                num2 = "none";
+                num1= "none"
+                result ="none";
+            }
             num1 = result;
             num2="none";
             operatorType=operator.textContent;
@@ -87,14 +97,23 @@ let equal=document.querySelector(".equal");
 equal.addEventListener("click", ()=> {
     if((num1!="none") && (num2!="none") && (operatorType!="none")) {
         result = operate(operatorType,num1,num2);
-        if(result %1!=0){
-            result = Number(result).toFixed(6);
+        if(result=="no") {
+            output.textContent="CAN'T DIVIDE BY 0";
+            operatorType = "none";
+            num2 = "none";
+            num1= "none"
+            result ="none";
         }
-        result = Number(result);
-        num1 = result;
-        num2="none";
-        output.textContent=result.toString();
-        operatorType="none";
+        else {
+            if(result %1!=0){
+                result = Number(result).toFixed(6);
+            }
+            result = Number(result);
+            num1 = result;
+            num2="none";
+            output.textContent=result.toString();
+            operatorType="none";
+        }
     }
 })
 
